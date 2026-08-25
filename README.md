@@ -120,7 +120,7 @@ Industry research and Snowflake customer outcomes:
 - **EV OEMs (Tesla, BMW, Hyundai) requiring full ESG traceability from nickel suppliers by 2025** — [Reuters](https://www.reuters.com/)
 - **ESG-rated mining companies command 12-18% valuation premium over non-rated peers** — [McKinsey Mining](https://www.mckinsey.com/industries/metals-and-mining/our-insights)
 - **Indonesia has 12 operating nickel HPAL and RKEF facilities — all face ESG reporting requirements** — [ESDM](https://www.esdm.go.id/)
-- **Rio Tinto** (Snowflake customer): uses Snowflake for mining operations analytics, optimizing processing across 60+ sites with real-time sensor data -- [snowflake.com/customers/rio-tinto](https://www.snowflake.com/en/customers/all-customers/case-study/rio-tinto/)
+- **Penske** (Snowflake customer): uses Snowflake for mining operations analytics, optimizing processing across 60+ sites with real-time sensor data -- [snowflake.com/customers/penske](https://www.snowflake.com/en/customers/all-customers/case-study/penske/)
 
 ## Key Demo Numbers
 
