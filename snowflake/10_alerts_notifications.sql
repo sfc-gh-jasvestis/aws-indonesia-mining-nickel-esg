@@ -8,7 +8,7 @@ USE SCHEMA APP;
 CREATE OR REPLACE NOTIFICATION INTEGRATION aws_indonesia_mining_nickel_esg_EMAIL_INT
   TYPE = EMAIL
   ENABLED = TRUE
-  ALLOWED_RECIPIENTS = ('jonathan.asvestis@snowflake.com');
+  ALLOWED_RECIPIENTS = ('<YOUR_EMAIL>');
 
 -- Alert: EMISSIONS_TARGET_ALERT
 CREATE OR REPLACE ALERT APP.EMISSIONS_TARGET_ALERT
@@ -22,7 +22,7 @@ IF (EXISTS (
 THEN
   CALL SYSTEM$SEND_EMAIL(
     'aws_indonesia_mining_nickel_esg_EMAIL_INT',
-    'jonathan.asvestis@snowflake.com',
+    '<YOUR_EMAIL>',
     '[ALERT] Mining ESG & Sustainability: Emissions trajectory exceeds 2025 reduction target',
     'Emissions trajectory exceeds 2025 reduction target'
   );
@@ -41,7 +41,7 @@ IF (EXISTS (
 THEN
   CALL SYSTEM$SEND_EMAIL(
     'aws_indonesia_mining_nickel_esg_EMAIL_INT',
-    'jonathan.asvestis@snowflake.com',
+    '<YOUR_EMAIL>',
     '[ALERT] Mining ESG & Sustainability: Effluent quality exceedance detected at monitoring point',
     'Effluent quality exceedance detected at monitoring point'
   );
