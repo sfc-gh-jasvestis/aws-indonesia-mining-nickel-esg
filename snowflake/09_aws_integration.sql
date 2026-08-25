@@ -1,6 +1,6 @@
 -- ============================================================================
 -- 09_AWS_INTEGRATION.SQL — AWS services for Mining ESG & Sustainability
--- Account: 018437500440 | Region: ap-southeast-1
+-- Account: <YOUR_AWS_ACCOUNT_ID> | Region: ap-southeast-1
 -- Skip this script for Snowflake-only build
 -- ============================================================================
 USE DATABASE MINING_ESG;
@@ -65,18 +65,18 @@ $$;
 CREATE OR REPLACE STORAGE INTEGRATION aws_indonesia_mining_nickel_esg_S3_INT
   TYPE = EXTERNAL_STAGE
   STORAGE_PROVIDER = 'S3'
-  STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::018437500440:role/snowflake-sea-demos-s3'
+  STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::<YOUR_AWS_ACCOUNT_ID>:role/snowflake-sea-demos-s3'
   ENABLED = TRUE
-  STORAGE_ALLOWED_LOCATIONS = ('s3://sea-aws-demos-018437500440/aws-indonesia-mining-nickel-esg/');
+  STORAGE_ALLOWED_LOCATIONS = ('s3://<YOUR_S3_BUCKET>/aws-indonesia-mining-nickel-esg/');
 
 -- External stage for data landing
 CREATE OR REPLACE STAGE RAW.LANDING_STAGE
   STORAGE_INTEGRATION = aws_indonesia_mining_nickel_esg_S3_INT
-  URL = 's3://sea-aws-demos-018437500440/aws-indonesia-mining-nickel-esg/';
+  URL = 's3://<YOUR_S3_BUCKET>/aws-indonesia-mining-nickel-esg/';
 
 -- ==================== KINESIS / IOT CORE INGESTION ====================
 -- Snowpipe from Kinesis Data Stream
--- Stream ARN: arn:aws:kinesis:ap-southeast-1:018437500440:stream/aws-indonesia-mining-nickel-esg-stream
+-- Stream ARN: arn:aws:kinesis:ap-southeast-1:<YOUR_AWS_ACCOUNT_ID>:stream/aws-indonesia-mining-nickel-esg-stream
 
 CREATE OR REPLACE PIPE RAW.REALTIME_PIPE
   AUTO_INGEST = TRUE
