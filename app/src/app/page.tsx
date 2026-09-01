@@ -32,15 +32,23 @@ export default function HomePage() {
       .catch(() => {});
   }, []);
 
+
+  // Look up a KPI value returned by /api/data (sourced from CURATED.KPI_SUMMARY).
+  // Falls back to the original literal so the card still renders if the API,
+  // or KPI_SUMMARY, is unavailable.
+  const kpiVal = (title: string, fallback: string): string =>
+    (data?.kpiCards as { title: string; value: string }[] | undefined)
+      ?.find((k) => k.title === title)?.value ?? fallback;
+
   const title = narrative?.title || 'SEA AWS Demo';
 
   const executiveCockpit = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <KPICard title="ESG Score (Avg)" value="72/100" status="warning" />
-        <KPICard title="Emissions (MTD)" value="124K tCO2e" status="danger" />
-        <KPICard title="Rehabilitation Area" value="847 ha" status="neutral" />
-        <KPICard title="Sites Monitored" value="34" status="neutral" />
+        <KPICard title="ESG Score (Avg)" value={kpiVal('ESG Score (Avg)', '72/100')} status="warning" />
+        <KPICard title="Emissions (MTD)" value={kpiVal('Emissions (MTD)', '124K tCO2e')} status="danger" />
+        <KPICard title="Rehabilitation Area" value={kpiVal('Rehabilitation Area', '847 ha')} status="neutral" />
+        <KPICard title="Sites Monitored" value={kpiVal('Sites Monitored', '34')} status="neutral" />
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="lg:col-span-1">
@@ -87,9 +95,9 @@ export default function HomePage() {
   const domainTab1 = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <KPICard title="Water Recycled" value="78%" />
-        <KPICard title="Tailings Stability" value="Safe" />
-        <KPICard title="Biodiversity Index" value="0.72" />
+        <KPICard title="Water Recycled" value={kpiVal('Water Recycled', '78%')} />
+        <KPICard title="Tailings Stability" value={kpiVal('Tailings Stability', 'Safe')} />
+        <KPICard title="Biodiversity Index" value={kpiVal('Biodiversity Index', '0.72')} />
       </div>
       <Chart
         data={data?.detail || [{ x: 'Mon', y: 24 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 22 }, { x: 'Thu', y: 31 }, { x: 'Fri', y: 26 }, { x: 'Sat', y: 19 }, { x: 'Sun', y: 23 }]}
